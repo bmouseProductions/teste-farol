@@ -41,8 +41,7 @@ async function enviarEmailBackend(
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
       to: ["contas@bmouseproductions.com", "vendas@patense.com.br"],
-      subject:
-        "Gostaria de saber mais informações sobre as farinhas de Camarão e Atum",
+      subject: "Site Farol - Mais informações sobre os produtos",
       html: `<p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
