@@ -64,7 +64,7 @@ async function enviarEmailBackend(
 app.post("/send", upload.single("propostaFile"), async (req, res) => {
   console.log("Arquivo recebido:", req.file);
   const { nome, email, telefone, mensagem, propostaName } = req.body;
-  const propostaFile = req.file;
+  const propostaFile = req.file; // Arquivo anexado pelo Multer
 
   try {
     await enviarEmailBackend(
