@@ -40,7 +40,7 @@ async function enviarEmailBackend(
 
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
-      to: ["jhonisilva545@gmail.com"],
+      to: ["contas@bmouseproductions.com", "vendas@patense.com.br"],
       subject:
         "Gostaria de saber mais informações sobre as farinhas de Camarão e Atum",
       html: `<p>Nome: ${nome}</p>
