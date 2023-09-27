@@ -13,9 +13,9 @@ app.use(cors());
 
 const db = mysql.createConnection({
   host: "vps-5528980.bmouseproductions.com",
-  user: "bioseacom_bmouse",
-  password: "_af!1b0Yc5f!",
-  database: "bioseacom_chatbot",
+  user: "bioseacom_teste",
+  password: "Ae@125445364a",
+  database: "bioseacom_TesteChat",
 });
 
 const storage = multer.diskStorage({
