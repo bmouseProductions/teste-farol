@@ -4,11 +4,19 @@ const bodyParser = require("body-parser");
 const multer = require("multer");
 const nodemailer = require("nodemailer");
 const cors = require("cors");
+const mysql = require("mysql");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
+
+const db = mysql.createConnection({
+  host: "vps-5528980.bmouseproductions.com",
+  user: "bioseacom_bmouse",
+  password: "_af!1b0Yc5f!",
+  database: "bioseacom_chatbot",
+});
 
 const storage = multer.diskStorage({
   destination: "uploads/",
@@ -82,6 +90,24 @@ app.post("/send", upload.single("propostaFile"), async (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.status(500).json({ error: "Erro ao enviar o e-mail" });
   }
+});
+
+app.post("/track-button-click", (req, res) => {
+  const buttonId = req.body.buttonId; // Assuming you send the button ID from the frontend
+
+  console.log("Received button ID:", buttonId);
+
+  // Use the INSERT ... ON DUPLICATE KEY UPDATE query to insert or update the record
+  db.query(
+    "INSERT INTO rastreio_cliques (nome_botao, quantidade_cliques) VALUES (?, 1) ON DUPLICATE KEY UPDATE quantidade_cliques = quantidade_cliques + 1",
+    [buttonId],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      res.send("Button click recorded successfully.");
+    }
+  );
 });
 
 app.listen(3001, function () {
