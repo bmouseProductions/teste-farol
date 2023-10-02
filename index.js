@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const sectorEmails = {
-  comercialMercadoExterno: "sales@patense.com.br",
+  comercialMercadoExterno: "contas@bmouseproductions.com",
   comercialMercadoInterno: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
@@ -36,8 +36,9 @@ const sectorEmails = {
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
+    "contas@bmouseproductions.com",
   ],
-  comercialMercadoExternoSugestoes: "sales@patense.com.br",
+  comercialMercadoExternoSugestoes: "contas@bmouseproductions.com",
   comercialMercadoInternoSugestoes: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
@@ -45,8 +46,9 @@ const sectorEmails = {
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
+    "contas@bmouseproductions.com",
   ],
-  comercialMercadoExternoInformacoes: "sales@patense.com.br",
+  comercialMercadoExternoInformacoes: "contas@bmouseproductions.com",
   comercialMercadoInternoInformacoes: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
@@ -54,8 +56,9 @@ const sectorEmails = {
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
+    "contas@bmouseproductions.com",
   ],
-  comercialMercadoExternoReclamacoes: "sales@patense.com.br",
+  comercialMercadoExternoReclamacoes: "contas@bmouseproductions.com",
   comercialMercadoInternoReclamacoes: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
@@ -63,8 +66,9 @@ const sectorEmails = {
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
+    "contas@bmouseproductions.com",
   ],
-  comercialMercadoExternoDuvidas: "sales@patense.com.br",
+  comercialMercadoExternoDuvidas: "contas@bmouseproductions.com",
   comercialMercadoInternoDuvidas: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
@@ -72,6 +76,7 @@ const sectorEmails = {
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
+    "contas@bmouseproductions.com",
   ],
   originacao: "marcos.mota@patense.com.br",
   administrativos: "lara.silva@patense.com.br",
