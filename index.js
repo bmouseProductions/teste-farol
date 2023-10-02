@@ -36,6 +36,7 @@ const sectorEmails = {
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br", */
     "contas@bmouseproductions.com",
+    "guilherme.borges@patense.com.br",
     /*  "sales@patense.com.br", */
   ],
   comercialReclamacoes: [
@@ -46,6 +47,7 @@ const sectorEmails = {
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br", */
     "contas@bmouseproductions.com",
+    "guilherme.borges@patense.com.br",
     /* "sales@patense.com.br", */
   ],
   comercialInformacoes: [
@@ -56,6 +58,7 @@ const sectorEmails = {
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br", */
     "contas@bmouseproductions.com",
+    "guilherme.borges@patense.com.br",
     /* "sales@patense.com.br", */
   ],
   originacao: "contas@bmouseproductions.com", //marcos.mota@patense.com.br
