@@ -62,6 +62,14 @@ const sectorEmails = {
   administrativos: "contas@bmouseproductions.com", //lara.silva@patense.com.br
 };
 
+const sectorDescriptions = {
+  comercialSugestoes: "Comercial - Sugestões",
+  comercialReclamacoes: "Comercial - Reclamações",
+  comercialInformacoes: "Comercial - Informações",
+  originacao: "Originação",
+  administrativos: "Administrativos",
+};
+
 async function enviarEmailBackend(
   nome,
   email,
@@ -76,6 +84,12 @@ async function enviarEmailBackend(
 
     if (!toEmail) {
       throw new Error("Invalid sector");
+    }
+
+    const setorDescricao = sectorDescriptions[setor];
+
+    if (!setorDescricao) {
+      throw new Error("Setor description not found");
     }
 
     let transporter = nodemailer.createTransport({
@@ -101,8 +115,8 @@ async function enviarEmailBackend(
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
       to: toEmail,
-      subject: `Site Farol - Mais informações sobre os produtos`,
-      html: `${setor}
+      subject: `Site Farol - Mais informações sobre os produtos - ${setorDescricao}`,
+      html: `
       <p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
