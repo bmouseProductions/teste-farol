@@ -88,6 +88,16 @@ async function enviarEmailBackend(
       },
     });
 
+    const attachments = [];
+
+    if (propostaFile) {
+      // If the file exists, add it to attachments
+      attachments.push({
+        filename: propostaName,
+        path: propostaFile.path,
+      });
+    }
+
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
       to: toEmail,
@@ -96,16 +106,8 @@ async function enviarEmailBackend(
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
              <p>Mensagem: ${mensagem}</p>`,
-      attachments: [],
+      attachments: attachments,
     });
-
-    if (propostaFile) {
-      // If the file exists, add it to attachments
-      info.attachments.push({
-        filename: propostaName,
-        path: propostaFile.path,
-      });
-    }
 
     console.log("E-mail enviado: %s", info.messageId);
   } catch (err) {
