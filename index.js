@@ -27,15 +27,29 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+const sectorEmails = {
+  comercial: "benolopesdias@gmail.com",
+  originacao: "benolopes11@gmail.com",
+  administrativos: "administrativos@example.com",
+  logistica: "logistica@example.com",
+};
+
 async function enviarEmailBackend(
   nome,
   email,
   telefone,
   mensagem,
   propostaFile,
-  propostaName
+  propostaName,
+  setor
 ) {
   try {
+    const toEmail = sectorEmails[setor]; // Get the email address for the selected sector
+
+    if (!toEmail) {
+      throw new Error("Invalid sector");
+    }
+
     let transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com",
       port: 587,
@@ -48,7 +62,7 @@ async function enviarEmailBackend(
 
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
-      to: ["contas@bmouseproductions.com", "vendas@farol.ind.br"],
+      to: toEmail,
       subject: "Site Farol - Mais informações sobre os produtos",
       html: `<p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
@@ -56,8 +70,8 @@ async function enviarEmailBackend(
              <p>Mensagem: ${mensagem}</p>`,
       attachments: [
         {
-          filename: propostaFile.originalname, // Usamos o nome original com a extensão
-          path: propostaFile.path, // Usamos o caminho físico do arquivo no servidor
+          filename: propostaFile.originalname,
+          path: propostaFile.path, // Use the physical file path on the server
         },
       ],
     });
@@ -65,13 +79,14 @@ async function enviarEmailBackend(
     console.log("E-mail enviado: %s", info.messageId);
   } catch (err) {
     console.error(err);
+    throw err;
   }
 }
 
 app.post("/send", upload.single("propostaFile"), async (req, res) => {
   console.log("Arquivo recebido:", req.file);
-  const { nome, email, telefone, mensagem, propostaName } = req.body;
-  const propostaFile = req.file; // Arquivo anexado pelo Multer
+  const { nome, email, telefone, mensagem, propostaName, setor } = req.body;
+  const propostaFile = req.file; // File attached via Multer
 
   try {
     await enviarEmailBackend(
@@ -80,7 +95,8 @@ app.post("/send", upload.single("propostaFile"), async (req, res) => {
       telefone,
       mensagem,
       propostaFile,
-      propostaName
+      propostaName,
+      setor
     );
 
     res.setHeader("Access-Control-Allow-Origin", "*");
