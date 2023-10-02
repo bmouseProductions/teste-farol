@@ -28,8 +28,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const sectorEmails = {
-  comercialMercadoExterno: "contas@bmouseproductions.com",
-  comercialMercadoInterno: [
+  comercialSugestoes: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
@@ -37,9 +36,9 @@ const sectorEmails = {
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
     "contas@bmouseproductions.com",
+    "sales@patense.com.br",
   ],
-  comercialMercadoExternoSugestoes: "contas@bmouseproductions.com",
-  comercialMercadoInternoSugestoes: [
+  comercialReclamacoes: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
@@ -47,9 +46,9 @@ const sectorEmails = {
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
     "contas@bmouseproductions.com",
+    "sales@patense.com.br",
   ],
-  comercialMercadoExternoInformacoes: "contas@bmouseproductions.com",
-  comercialMercadoInternoInformacoes: [
+  comercialInformacoes: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
@@ -57,26 +56,7 @@ const sectorEmails = {
     "stenio.lopes@farol.ind.br",
     "sbc@bfpbrasil.com.br",
     "contas@bmouseproductions.com",
-  ],
-  comercialMercadoExternoReclamacoes: "contas@bmouseproductions.com",
-  comercialMercadoInternoReclamacoes: [
-    "marinosio.neto@farol.ind.br",
-    "luiz.khoury@patense.com.br",
-    "lorena.moura@patense.com.br",
-    "carolina.aroeira@patense.com.br",
-    "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br",
-    "contas@bmouseproductions.com",
-  ],
-  comercialMercadoExternoDuvidas: "contas@bmouseproductions.com",
-  comercialMercadoInternoDuvidas: [
-    "marinosio.neto@farol.ind.br",
-    "luiz.khoury@patense.com.br",
-    "lorena.moura@patense.com.br",
-    "carolina.aroeira@patense.com.br",
-    "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br",
-    "contas@bmouseproductions.com",
+    "sales@patense.com.br",
   ],
   originacao: "marcos.mota@patense.com.br",
   administrativos: "lara.silva@patense.com.br",
@@ -116,13 +96,16 @@ async function enviarEmailBackend(
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
              <p>Mensagem: ${mensagem}</p>`,
-      attachments: [
-        {
-          filename: propostaFile.originalname,
-          path: propostaFile.path, // Use the physical file path on the server
-        },
-      ],
+      attachments: [],
     });
+
+    if (propostaFile) {
+      // If the file exists, add it to attachments
+      info.attachments.push({
+        filename: propostaName,
+        path: propostaFile.path,
+      });
+    }
 
     console.log("E-mail enviado: %s", info.messageId);
   } catch (err) {
