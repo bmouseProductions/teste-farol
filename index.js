@@ -28,10 +28,53 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 const sectorEmails = {
-  comercial: "benolopesdias@gmail.com",
-  originacao: "benolopes11@gmail.com",
-  administrativos: "administrativos@example.com",
-  logistica: "logistica@example.com",
+  comercialMercadoExterno: "sales@patense.com.br",
+  comercialMercadoInterno: [
+    "marinosio.neto@farol.ind.br",
+    "luiz.khoury@patense.com.br",
+    "lorena.moura@patense.com.br",
+    "carolina.aroeira@patense.com.br",
+    "stenio.lopes@farol.ind.br",
+    "sbc@bfpbrasil.com.br",
+  ],
+  comercialMercadoExternoSugestoes: "sales@patense.com.br",
+  comercialMercadoInternoSugestoes: [
+    "marinosio.neto@farol.ind.br",
+    "luiz.khoury@patense.com.br",
+    "lorena.moura@patense.com.br",
+    "carolina.aroeira@patense.com.br",
+    "stenio.lopes@farol.ind.br",
+    "sbc@bfpbrasil.com.br",
+  ],
+  comercialMercadoExternoInformacoes: "sales@patense.com.br",
+  comercialMercadoInternoInformacoes: [
+    "marinosio.neto@farol.ind.br",
+    "luiz.khoury@patense.com.br",
+    "lorena.moura@patense.com.br",
+    "carolina.aroeira@patense.com.br",
+    "stenio.lopes@farol.ind.br",
+    "sbc@bfpbrasil.com.br",
+  ],
+  comercialMercadoExternoReclamacoes: "sales@patense.com.br",
+  comercialMercadoInternoReclamacoes: [
+    "marinosio.neto@farol.ind.br",
+    "luiz.khoury@patense.com.br",
+    "lorena.moura@patense.com.br",
+    "carolina.aroeira@patense.com.br",
+    "stenio.lopes@farol.ind.br",
+    "sbc@bfpbrasil.com.br",
+  ],
+  comercialMercadoExternoDuvidas: "sales@patense.com.br",
+  comercialMercadoInternoDuvidas: [
+    "marinosio.neto@farol.ind.br",
+    "luiz.khoury@patense.com.br",
+    "lorena.moura@patense.com.br",
+    "carolina.aroeira@patense.com.br",
+    "stenio.lopes@farol.ind.br",
+    "sbc@bfpbrasil.com.br",
+  ],
+  originacao: "marcos.mota@patense.com.br",
+  administrativos: "lara.silva@patense.com.br",
 };
 
 async function enviarEmailBackend(
