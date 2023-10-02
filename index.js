@@ -29,37 +29,37 @@ const upload = multer({ storage: storage });
 
 const sectorEmails = {
   comercialSugestoes: [
-    "marinosio.neto@farol.ind.br",
+    /* "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br",
+    "sbc@bfpbrasil.com.br", */
     "contas@bmouseproductions.com",
-    "sales@patense.com.br",
+    /*  "sales@patense.com.br", */
   ],
   comercialReclamacoes: [
-    "marinosio.neto@farol.ind.br",
+    /* "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br",
+    "sbc@bfpbrasil.com.br", */
     "contas@bmouseproductions.com",
-    "sales@patense.com.br",
+    /* "sales@patense.com.br", */
   ],
   comercialInformacoes: [
-    "marinosio.neto@farol.ind.br",
+    /* "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br",
+    "sbc@bfpbrasil.com.br", */
     "contas@bmouseproductions.com",
-    "sales@patense.com.br",
+    /* "sales@patense.com.br", */
   ],
-  originacao: "marcos.mota@patense.com.br",
-  administrativos: "lara.silva@patense.com.br",
+  originacao: "contas@bmouseproductions.com", //marcos.mota@patense.com.br
+  administrativos: "contas@bmouseproductions.com", //lara.silva@patense.com.br
 };
 
 async function enviarEmailBackend(
@@ -101,7 +101,7 @@ async function enviarEmailBackend(
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
       to: toEmail,
-      subject: "Site Farol - Mais informações sobre os produtos",
+      subject: `Site Farol - Mais informações sobre os produtos - ${setor}`,
       html: `<p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
