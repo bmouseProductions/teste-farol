@@ -115,8 +115,8 @@ async function enviarEmailBackend(
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
       to: toEmail,
-      subject: `Site Farol - Mais informações sobre os produtos - ${setorDescricao}`,
-      html: `
+      subject: `Site Farol - Mais informações sobre os produtos`,
+      html: `${setorDescricao}
       <p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
