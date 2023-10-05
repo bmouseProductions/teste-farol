@@ -29,40 +29,54 @@ const upload = multer({ storage: storage });
 
 const sectorEmails = {
   comercialSugestoes: [
-    /* "marinosio.neto@farol.ind.br",
+    "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br", */
-    "contas@bmouseproductions.com",
+    "sbc@bfpbrasil.com.br",
+    "mktpatense@gmail.com",
     "guilherme.borges@patense.com.br",
-    /*  "sales@patense.com.br", */
+    "sales@patense.com.br",
   ],
   comercialReclamacoes: [
-    /* "marinosio.neto@farol.ind.br",
+    "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br", */
-    "contas@bmouseproductions.com",
+    "sbc@bfpbrasil.com.br",
+    "mktpatense@gmail.com",
     "guilherme.borges@patense.com.br",
-    /* "sales@patense.com.br", */
+    "sales@patense.com.br",
   ],
   comercialInformacoes: [
-    /* "marinosio.neto@farol.ind.br",
+    "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
     "stenio.lopes@farol.ind.br",
-    "sbc@bfpbrasil.com.br", */
-    "contas@bmouseproductions.com",
+    "sbc@bfpbrasil.com.br",
+    "mktpatense@gmail.com",
     "guilherme.borges@patense.com.br",
-    /* "sales@patense.com.br", */
+    "sales@patense.com.br",
   ],
-  originacao: "contas@bmouseproductions.com", //marcos.mota@patense.com.br
-  administrativos: "contas@bmouseproductions.com", //lara.silva@patense.com.br
+  originacao: "mktpatense@gmail.com", //marcos.mota@patense.com.br
+  administrativos: "mktpatense@gmail.com", //lara.silva@patense.com.br
+  logistica: "mktpatense@gmail.com", //logisticami.farinha@patense.com.br logisticami.oleos@patense.com.br
+  administrativosRH: "mktpatense@gmail.com", //lara.silva@patense.com.br
+  administrativosCompras: "mktpatense@gmail.com", //lara.silva@patense.com.br
+  comercialDuvidas: [
+    "marinosio.neto@farol.ind.br",
+    "luiz.khoury@patense.com.br",
+    "lorena.moura@patense.com.br",
+    "carolina.aroeira@patense.com.br",
+    "stenio.lopes@farol.ind.br",
+    "sbc@bfpbrasil.com.br",
+    "mktpatense@gmail.com",
+    "guilherme.borges@patense.com.br",
+    "sales@patense.com.br",
+  ],
 };
 
 const sectorDescriptions = {
@@ -78,8 +92,8 @@ async function enviarEmailBackend(
   email,
   telefone,
   mensagem,
-  propostaFile,
-  propostaName,
+  /*   propostaFile,
+  propostaName, */
   setor
 ) {
   try {
@@ -105,7 +119,7 @@ async function enviarEmailBackend(
       },
     });
 
-    const attachments = [];
+    /*     const attachments = [];
 
     if (propostaFile) {
       // If the file exists, add it to attachments
@@ -113,7 +127,7 @@ async function enviarEmailBackend(
         filename: propostaName,
         path: propostaFile.path,
       });
-    }
+    } */
 
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
@@ -124,7 +138,7 @@ async function enviarEmailBackend(
              <p>Telefone: ${telefone}</p>
              <p>E-mail: ${email}</p>
              <p>Mensagem: ${mensagem}</p>`,
-      attachments: attachments,
+      //attachments: attachments,
     });
 
     console.log("E-mail enviado: %s", info.messageId);
@@ -134,30 +148,34 @@ async function enviarEmailBackend(
   }
 }
 
-app.post("/send", upload.single("propostaFile"), async (req, res) => {
-  console.log("Arquivo recebido:", req.file);
-  const { nome, email, telefone, mensagem, propostaName, setor } = req.body;
-  const propostaFile = req.file; // File attached via Multer
+app.post(
+  "/send",
+  /* upload.single("propostaFile") */ async (req, res) => {
+    /* console.log("Arquivo recebido:", req.file); */
+    const { nome, email, telefone, mensagem, /* propostaName */ setor } =
+      req.body;
+    /*   const propostaFile = req.file; // File attached via Multer */
 
-  try {
-    await enviarEmailBackend(
-      nome,
-      email,
-      telefone,
-      mensagem,
-      propostaFile,
-      propostaName,
-      setor
-    );
+    try {
+      await enviarEmailBackend(
+        nome,
+        email,
+        telefone,
+        mensagem,
+        /*       propostaFile,
+      propostaName, */
+        setor
+      );
 
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.status(200).json({ msg: "E-mail enviado com sucesso" });
-  } catch (error) {
-    console.error("Erro ao enviar o e-mail", error);
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    res.status(500).json({ error: "Erro ao enviar o e-mail" });
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.status(200).json({ msg: "E-mail enviado com sucesso" });
+    } catch (error) {
+      console.error("Erro ao enviar o e-mail", error);
+      res.setHeader("Access-Control-Allow-Origin", "*");
+      res.status(500).json({ error: "Erro ao enviar o e-mail" });
+    }
   }
-});
+);
 
 app.post("/track-button-click", (req, res) => {
   const buttonId = req.body.buttonId; // Assuming you send the button ID from the frontend
