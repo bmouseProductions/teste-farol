@@ -61,11 +61,15 @@ const sectorEmails = {
     "guilherme.borges@patense.com.br",
     "sales@patense.com.br",
   ],
-  originacao: "mktpatense@gmail.com", //marcos.mota@patense.com.br
-  administrativos: "mktpatense@gmail.com", //lara.silva@patense.com.br
-  logistica: "mktpatense@gmail.com", //logisticami.farinha@patense.com.br logisticami.oleos@patense.com.br
-  administrativosRH: "mktpatense@gmail.com", //lara.silva@patense.com.br
-  administrativosCompras: "mktpatense@gmail.com", //lara.silva@patense.com.br
+  originacao: ["marcos.mota@patense.com.br", "mktpatense@gmail.com"], //
+  administrativos: ["lara.silva@patense.com.br", "mktpatense@gmail.com"], //
+  logistica: [
+    "logisticami.farinha@patense.com.br",
+    "logisticami.oleos@patense.com.br",
+    "mktpatense@gmail.com",
+  ],
+  administrativosRH: ["lara.silva@patense.com.br", "mktpatense@gmail.com"], //
+  administrativosCompras: ["fornecedores@farol.ind.br", "mktpatense@gmail.com"], //lara.silva@patense.com.br
   comercialDuvidas: [
     "marinosio.neto@farol.ind.br",
     "luiz.khoury@patense.com.br",
