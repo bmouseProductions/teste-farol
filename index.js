@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 const cors = require("cors");
 const mysql = require("mysql");
 
-app.use(bodyParser.urlencoded({ extended: true }));
+/* app.use(bodyParser.urlencoded({ extended: true })); */
 app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
@@ -98,20 +98,36 @@ async function enviarEmailBackend(
   mensagem,
   /*   propostaFile,
   propostaName, */
-  setor
+  setor,
+  teste
 ) {
   try {
-    const toEmail = sectorEmails[setor]; // Get the email address for the selected sector
+    console.log("Valores recebidos na função enviarEmailBackend:", {
+      nome,
+      email,
+      telefone,
+      mensagem,
+      setor,
+      teste,
+    });
+
+    const toEmail = sectorEmails[setor];
+    console.log("Valor de setor:", setor);
+    console.log("Email para enviar:", toEmail);
 
     if (!toEmail) {
-      throw new Error("Invalid sector");
+      throw new Error("E-mail não encontrado para o setor: " + setor);
     }
+
+    /*     if (!toEmail) {
+      throw new Error("Invalid sector");
+    } */
 
     const setorDescricao = sectorDescriptions[setor];
 
-    if (!setorDescricao) {
+    /*     if (!setorDescricao) {
       throw new Error("Setor description not found");
-    }
+    } */
 
     let transporter = nodemailer.createTransport({
       host: "smtp-mail.outlook.com",
@@ -140,6 +156,7 @@ async function enviarEmailBackend(
       html: `${setorDescricao}
       <p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
+             <p>Opcao selecionada: ${teste}</p>
              <p>E-mail: ${email}</p>
              <p>Mensagem: ${mensagem}</p>`,
       //attachments: attachments,
@@ -156,10 +173,10 @@ app.post(
   "/send",
   /* upload.single("propostaFile") */ async (req, res) => {
     /* console.log("Arquivo recebido:", req.file); */
-    const { nome, email, telefone, mensagem, /* propostaName */ setor } =
+    const { nome, email, telefone, mensagem, /* propostaName */ setor, teste } =
       req.body;
     /*   const propostaFile = req.file; // File attached via Multer */
-
+    console.log("Setor recebido no servidor:", setor);
     try {
       await enviarEmailBackend(
         nome,
@@ -168,7 +185,8 @@ app.post(
         mensagem,
         /*       propostaFile,
       propostaName, */
-        setor
+        setor,
+        teste
       );
 
       res.setHeader("Access-Control-Allow-Origin", "*");
