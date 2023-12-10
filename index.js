@@ -100,7 +100,8 @@ async function enviarEmailBackend(
   propostaName, */
   setor,
   teste,
-  country
+  country1,
+  country2
 ) {
   try {
     console.log("Valores recebidos na função enviarEmailBackend:", {
@@ -110,7 +111,8 @@ async function enviarEmailBackend(
       mensagem,
       setor,
       teste,
-      country,
+      country1,
+      country2,
     });
 
     const toEmail = sectorEmails[setor];
@@ -153,14 +155,15 @@ async function enviarEmailBackend(
 
     let info = await transporter.sendMail({
       from: "site@patense.com.br",
-      to: toEmail, //
+      to: toEmail, //toEmail
       subject: `Site Farol - Mais informações sobre os produtos`,
       html: `${setorDescricao}
       <p>Nome: ${nome}</p>
              <p>Telefone: ${telefone}</p>
              <p>Opcao selecionada: ${teste}</p>
              <p>E-mail: ${email}</p>
-             <p>País de Encontro: ${country}</p>
+             <p>País de Encontro: ${country1}</p>
+             <p>País Destino: ${country2}</p>
              <p>Mensagem: ${mensagem}</p>`,
       //attachments: attachments,
     });
@@ -183,7 +186,8 @@ app.post(
       mensagem,
       /* propostaName */ setor,
       teste,
-      country,
+      country1,
+      country2,
     } = req.body;
     /*   const propostaFile = req.file; // File attached via Multer */
     console.log("Setor recebido no servidor:", setor);
@@ -197,7 +201,8 @@ app.post(
       propostaName, */
         setor,
         teste,
-        country
+        country1,
+        country2
       );
 
       res.setHeader("Access-Control-Allow-Origin", "*");
