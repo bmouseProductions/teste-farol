@@ -29,7 +29,7 @@ const upload = multer({ storage: storage });
 
 const sectorEmails = {
   comercialSugestoes: [
-    "marinosio.neto@farol.ind.br",
+    "vendas@patense.com.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
@@ -40,7 +40,7 @@ const sectorEmails = {
     "sales@patense.com.br",
   ],
   comercialReclamacoes: [
-    "marinosio.neto@farol.ind.br",
+    "vendas@patense.com.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
@@ -51,7 +51,7 @@ const sectorEmails = {
     "sales@patense.com.br",
   ],
   comercialInformacoes: [
-    "marinosio.neto@farol.ind.br",
+    "vendas@patense.com.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
@@ -71,7 +71,7 @@ const sectorEmails = {
   administrativosRH: ["lara.silva@patense.com.br", "mktpatense@gmail.com"], //
   administrativosCompras: ["fornecedores@farol.ind.br", "mktpatense@gmail.com"], //lara.silva@patense.com.br
   comercialDuvidas: [
-    "marinosio.neto@farol.ind.br",
+    "vendas@patense.com.br",
     "luiz.khoury@patense.com.br",
     "lorena.moura@patense.com.br",
     "carolina.aroeira@patense.com.br",
